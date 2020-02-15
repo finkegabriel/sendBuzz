@@ -4,8 +4,8 @@ import './App.css';
 var vibrateInterval;
 
 // Starts vibration at passed in level
-function start(){
-  startPersistentVibrate(100,1);
+function start() {
+  startPersistentVibrate(100, 1);
 }
 
 function startVibrate(duration) {
@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <input type="button" value="Send" onClick={start} />
-        <input type="button" value="Receive" />
+        <input type="button" value="Stop" onClick={stopVibrate} />
       </header>
     </div>
   );
