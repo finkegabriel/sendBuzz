@@ -5,7 +5,7 @@ var vibrateInterval;
 
 // Starts vibration at passed in level
 function start() {
-  startPersistentVibrate(10000, 1);
+  startPersistentVibrate(10000, 500);
 }
 
 function startVibrate(duration) {
