@@ -95,11 +95,31 @@ class App extends React.Component {
     }
   }
 
-  handleReceive = (event) => {
 
+ handleMotionEvent = (event)=> {
+
+    var x = event.accelerationIncludingGravity.x;
+    var y = event.accelerationIncludingGravity.y;
+    var z = event.accelerationIncludingGravity.z;
+    console.log("x ",x," y ",y," z ",z);
+    // Do something awesome.
+}
+
+  handleReceive = (event) => {
+    console.log("start listening!!");
+
+    // var x = event.accelerationIncludingGravity.x;
+    // var y = event.accelerationIncludingGravity.y;
+    // var z = event.accelerationIncludingGravity.z;
+    console.log(this.handleMotionEvent());
+    // // Do something awesome.
   }
 
+
+
+
   render() {
+ 
     return (
       <div className="App">
         <header className="App-header">
