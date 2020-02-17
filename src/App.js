@@ -90,7 +90,7 @@ class App extends React.Component {
             }
             console.log(this.state.current, 'of', this.state.segments.length);
           }, 10000);
-          console.log("intertval ",this.intervalId);
+          console.log("intertval ", this.intervalId);
         }
         reader.readAsDataURL(selectedFile);
       }
@@ -101,15 +101,32 @@ class App extends React.Component {
   handleReceive = (event) => {
     if (window.DeviceOrientationEvent) {
       // We can listen for change in the device's orientation... works over https only :/
-      console.log("event ",window.DeviceOrientationEvent);
+      console.log("event ");
+      document.getElementById('dm-info').classList.remove('hidden');
+
+      window.addEventListener('devicemotion', function (event) {
+        let x1 = Math.round(event.acceleration.x);
+        let y1 = Math.round(event.acceleration.y);
+        let z1 = Math.round(event.acceleration.z);
+
+        let x = Math.round(event.accelerationIncludingGravity.x);
+        let y = Math.round(event.accelerationIncludingGravity.y);
+        let z = Math.round(event.accelerationIncludingGravity.z);
+        this.console.log("x ", x1, x, " y ", y1, y, " z ", z1, z);
+        // document.getElementById('rotation-rate-beta').innerHTML = Math.round(event.rotationRate.beta);
+        // document.getElementById('rotation-rate-gamma').innerHTML = Math.round(event.rotationRate.gamma);
+        // document.getElementById('rotation-rate-alpha').innerHTML = Math.round(event.rotationRate.alpha);
+        
+        // document.getElementById('interval').innerHTML = event.interval;
+      });
       // alert("ACCESS GRANTED");
 
 
-   } else {
-     // Not supported
-     alert("Sorry, your browser doesn't support Device Orientation");
-   }
-    
+    } else {
+      // Not supported
+      alert("Sorry, your browser doesn't support Device Orientation");
+    }
+
   }
 
 
