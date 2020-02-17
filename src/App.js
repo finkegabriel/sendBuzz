@@ -11,7 +11,8 @@ class App extends React.Component {
     receiveSegments: {},
     totalReceived: 0,
     expecting: '?',
-    receive: 0
+    receive: 0,
+    buffer: []
   };
 
   // Starts vibration at passed in level
@@ -28,7 +29,7 @@ class App extends React.Component {
   // Start persistent vibration at given duration and interval
   // Assumes a number value is given
   startPersistentVibrate = (duration, interval) => {
-    console.log("BUZZZzzZZZzzzzzzzzzzz");
+    console.log("BUZZZzzZZZzzzzzzzzzzz",duration, interval);
     vibrateInterval = setInterval(function () {
       navigator.vibrate(duration);
     }, interval);
@@ -60,7 +61,6 @@ class App extends React.Component {
             if (seg) {
               segments.push(seg);
             }
-
           }
           const joined = segments.join('');
           console.log('result  : ', result);
@@ -73,22 +73,25 @@ class App extends React.Component {
             let current = this.state.current + 1;
             if (current === segments.length) {
               this.setState({ current: 0 });
-              console.log("stop........ ", this.state.current);
-              // this.startPersistentVibrate(1,this.state.current)
+              console.log("stop", this.state.current);
             } else {
               this.setState({ current });
               console.log("sending.... ", this.state.current);
-              console.log("seg ",this.state.segments[current-1]);
-              this.startPersistentVibrate(this.state.current);
+              console.log("seg ", this.state.segments[current - 1]);
+              let buffer = new Buffer(this.state.segments[current - 1], 'base64');
+              this.setState({ buffer: buffer });
+              console.log("boof ", buffer);
+              // setInterval(() => {
+                for (let i = 0; i < this.state.buffer.length; i++) {
+                  this.startPersistentVibrate(this.state.buffer[i],5);
+                }
+              // }, 9000);
             }
-            // console.log(this.state.current, 'of', this.state.segments.length);
-          }, 2500);
-
-        };
-
+          }, 9000);
+          // console.log(this.state.current, 'of', this.state.segments.length);
+        }
         reader.readAsDataURL(selectedFile);
       }
-
     }
   }
 
