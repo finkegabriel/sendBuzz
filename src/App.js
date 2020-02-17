@@ -29,7 +29,7 @@ class App extends React.Component {
   // Start persistent vibration at given duration and interval
   // Assumes a number value is given
   startPersistentVibrate = (duration, interval) => {
-    console.log("BUZZZzzZZZzzzzzzzzzzz",duration, interval);
+    console.log("BUZZZzzZZZzzzzzzzzzzz", duration, interval);
     vibrateInterval = setInterval(function () {
       navigator.vibrate(duration);
     }, interval);
@@ -74,6 +74,7 @@ class App extends React.Component {
             if (current === segments.length) {
               this.setState({ current: 0 });
               console.log("stop", this.state.current);
+              this.stopVibrate();
             } else {
               this.setState({ current });
               console.log("sending.... ", this.state.current);
@@ -81,14 +82,13 @@ class App extends React.Component {
               let buffer = new Buffer(this.state.segments[current - 1], 'base64');
               this.setState({ buffer: buffer });
               console.log("boof ", buffer);
-              // setInterval(() => {
-                for (let i = 0; i < this.state.buffer.length; i++) {
-                  this.startPersistentVibrate(5,this.state.buffer[i]*100000);
-                }
-              // }, 9000);
+              for (let i = 0; i < this.state.buffer.length; i++) {
+                console.log(this.state.buffer[i]);
+                this.startPersistentVibrate(5, this.state.buffer[i] * 100000);
+              }
             }
+            console.log(this.state.current, 'of', this.state.segments.length);
           }, 10000);
-          // console.log(this.state.current, 'of', this.state.segments.length);
         }
         reader.readAsDataURL(selectedFile);
       }
@@ -105,7 +105,7 @@ class App extends React.Component {
         <header className="App-header">
           {this.state.current}
           <input type="button" value="Send" onClick={this.start} />
-          <input type="button" value="Stop" onClick={this.stopVibrate} />
+          {/* <input type="button" value="Stop" onClick={this.stopVibrate} /> */}
           <input type="button" value="Receive" onClick={this.handleReceive} />
           {this.state.receive}
         </header>
@@ -113,7 +113,5 @@ class App extends React.Component {
     );
   }
 }
-
-
 
 export default App;
