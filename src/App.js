@@ -100,8 +100,10 @@ class App extends React.Component {
 
   handleReceive = (event) => {
     if (window.DeviceOrientationEvent) {
-      // We can listen for change in the device's orientation...
-      alert("ACCESS GRANTED");
+      // We can listen for change in the device's orientation... works over https only :/
+      console.log("event ",window.DeviceOrientationEvent);
+      // alert("ACCESS GRANTED");
+
 
    } else {
      // Not supported
