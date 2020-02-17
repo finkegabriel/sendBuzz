@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
 
-
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
-const dur = 3;
+const dur = 2;
 const AMP = 100000;
 
 class App extends React.Component {
@@ -16,6 +15,9 @@ class App extends React.Component {
     receive: 0,
     buffer: [],
     decodeBuffer: [],
+    testData: "00110111",
+    testDataOff: "00000000",
+    binarayBuffer: [],
   };
 
 
@@ -28,6 +30,7 @@ class App extends React.Component {
     }, duration); //either duration or interval here...
   }
 
+
   // Stops vibration
   stopVibrate = () => {
     // Clear interval and stop persistent vibrating
@@ -38,10 +41,28 @@ class App extends React.Component {
   // Start persistent vibration at given duration and interval
   // Assumes a number value is given
   startPersistentVibrate = (duration, interval) => {
-    console.log("BUZZZzzZZZzzzzzzzzzzz", duration, interval);
-    vibrateInterval = setInterval(function () {
+    // console.log("BUZZZzzZZZzzzzzzzzzzz", duration, interval);
+    console.log("in loop ", duration);
+    vibrateInterval = setInterval(() => {
       navigator.vibrate(duration);
     }, interval);
+  }
+
+  encode = (binary) => {
+    var str = binary;
+    var res = str.split("", 8);
+    let bip = res;
+
+    for (let i = 0; i < bip.length; i++) {
+      console.log(bip[i]);
+      if (bip[i] == 0) {
+        console.log("dont send");
+        this.stopVibrate();
+      } else {
+        console.log("data ", bip[i]);
+        this.startPersistentVibrate(dur, 500);
+      }
+    }
   }
 
   start = () => {
@@ -92,8 +113,11 @@ class App extends React.Component {
               this.setState({ buffer: buffer });
               console.log("boof ", buffer);
               for (let i = 0; i < this.state.buffer.length; i++) {
-                console.log(this.state.buffer[i]);
-                this.startPersistentVibrate(dur, this.state.buffer[i] * AMP);
+                console.log("in loop ", this.state.buffer[i]);
+                var n = this.state.buffer[i].toString(2);
+                n = "00000000".substr(n.length) + n;
+                // console.log("bin ", n);
+                this.encode(n);
               }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
