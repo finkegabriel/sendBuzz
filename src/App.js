@@ -15,7 +15,7 @@ class App extends React.Component {
     receive: 0,
     buffer: [],
     decodeBuffer: [],
-    testData: "00110111",
+    testData:    "11111111",
     testDataOff: "00000000",
     binarayBuffer: [],
   };
@@ -60,7 +60,7 @@ class App extends React.Component {
         this.stopVibrate();
       } else {
         console.log("data ", bip[i]);
-        this.startPersistentVibrate(dur, 500);
+        this.startPersistentVibrate(dur*AMP*200, 500);
       }
     }
   }
