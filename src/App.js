@@ -4,7 +4,7 @@ import './App.css';
 
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
-const dur = 5;
+const dur = 3;
 const AMP = 100000;
 
 class App extends React.Component {
@@ -83,7 +83,7 @@ class App extends React.Component {
             if (current === segments.length) {
               this.setState({ current: 0 });
               console.log("stop", this.state.current);
-              this.stopVibrate();
+              // this.stopVibrate();
             } else {
               this.setState({ current });
               console.log("sending.... ", this.state.current);
@@ -93,7 +93,7 @@ class App extends React.Component {
               console.log("boof ", buffer);
               for (let i = 0; i < this.state.buffer.length; i++) {
                 console.log(this.state.buffer[i]);
-                this.startPersistentVibrate(this.state.buffer[i] * AMP, dur);
+                this.startPersistentVibrate(dur, this.state.buffer[i] * AMP);
               }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
