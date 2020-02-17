@@ -83,11 +83,11 @@ class App extends React.Component {
               console.log("boof ", buffer);
               // setInterval(() => {
                 for (let i = 0; i < this.state.buffer.length; i++) {
-                  this.startPersistentVibrate(this.state.buffer[i],5);
+                  this.startPersistentVibrate(5,this.state.buffer[i]*100000);
                 }
               // }, 9000);
             }
-          }, 9000);
+          }, 10000);
           // console.log(this.state.current, 'of', this.state.segments.length);
         }
         reader.readAsDataURL(selectedFile);
