@@ -4,21 +4,29 @@ import './App.css';
 
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
+const dur = 5;
+const AMP = 100000;
 
 class App extends React.Component {
   state = {
     mode: '',
-    qrSize: window.innerHeight < window.innerWidth ? window.innerHeight * 0.6 : window.innerWidth * 0.9,
     receiveSegments: {},
     totalReceived: 0,
     expecting: '?',
     receive: 0,
-    buffer: []
+    buffer: [],
+    decodeBuffer: [],
   };
 
-  // Starts vibration at passed in level
 
 
+  decode = (duration, interval) => {
+    console.log("duration: ", duration, " interval: ", interval);
+    setInterval(function () {
+      // let decodeBuffer = Buffer();
+      this.state.decodeBuffer.push(interval); //DIVIDE the data by AMP in post processing
+    }, duration); //either duration or interval here...
+  }
 
   // Stops vibration
   stopVibrate = () => {
@@ -85,7 +93,7 @@ class App extends React.Component {
               console.log("boof ", buffer);
               for (let i = 0; i < this.state.buffer.length; i++) {
                 console.log(this.state.buffer[i]);
-                this.startPersistentVibrate(1, this.state.buffer[i] * 100000);
+                this.startPersistentVibrate(dur, this.state.buffer[i] * AMP);
               }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
@@ -109,7 +117,9 @@ class App extends React.Component {
         let x = Math.round(event.accelerationIncludingGravity.x);
         let y = Math.round(event.accelerationIncludingGravity.y);
         let z = Math.round(event.accelerationIncludingGravity.z);
+
         this.console.log("x ", x1, x, " y ", y1, y, " z ", z1, z);
+        this.decode(dur, 0);
         // document.getElementById('rotation-rate-beta').innerHTML = Math.round(event.rotationRate.beta);
         // document.getElementById('rotation-rate-gamma').innerHTML = Math.round(event.rotationRate.gamma);
         // document.getElementById('rotation-rate-alpha').innerHTML = Math.round(event.rotationRate.alpha);
