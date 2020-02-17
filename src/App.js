@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 
+
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
 
@@ -84,11 +85,12 @@ class App extends React.Component {
               console.log("boof ", buffer);
               for (let i = 0; i < this.state.buffer.length; i++) {
                 console.log(this.state.buffer[i]);
-                this.startPersistentVibrate(5, this.state.buffer[i] * 100000);
+                this.startPersistentVibrate(1, this.state.buffer[i] * 100000);
               }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
           }, 10000);
+          console.log("intertval ",this.intervalId);
         }
         reader.readAsDataURL(selectedFile);
       }
@@ -96,30 +98,22 @@ class App extends React.Component {
   }
 
 
- handleMotionEvent = (event)=> {
-
-    var x = event.accelerationIncludingGravity.x;
-    var y = event.accelerationIncludingGravity.y;
-    var z = event.accelerationIncludingGravity.z;
-    console.log("x ",x," y ",y," z ",z);
-    // Do something awesome.
-}
-
   handleReceive = (event) => {
-    console.log("start listening!!");
+    if (window.DeviceOrientationEvent) {
+      // We can listen for change in the device's orientation...
+      alert("ACCESS GRANTED");
 
-    // var x = event.accelerationIncludingGravity.x;
-    // var y = event.accelerationIncludingGravity.y;
-    // var z = event.accelerationIncludingGravity.z;
-    console.log(this.handleMotionEvent());
-    // // Do something awesome.
+   } else {
+     // Not supported
+     alert("Sorry, your browser doesn't support Device Orientation");
+   }
+    
   }
 
 
 
 
   render() {
- 
     return (
       <div className="App">
         <header className="App-header">
