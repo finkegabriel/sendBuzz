@@ -93,7 +93,7 @@ class App extends React.Component {
               console.log("boof ", buffer);
               for (let i = 0; i < this.state.buffer.length; i++) {
                 console.log(this.state.buffer[i]);
-                this.startPersistentVibrate(dur, this.state.buffer[i] * AMP);
+                this.startPersistentVibrate(this.state.buffer[i] * AMP, dur);
               }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
