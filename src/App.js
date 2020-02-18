@@ -141,9 +141,9 @@ class App extends React.Component {
     if (window.DeviceOrientationEvent) {
       // We can listen for change in the device's orientation... works over https only :/
       window.addEventListener('devicemotion', function (event) {
-        let x1 = Math.round(event.acceleration.x);
-        let y1 = Math.round(event.acceleration.y);
-        let z1 = Math.round(event.acceleration.z);
+        let x1 = event.acceleration.x;
+        let y1 = event.acceleration.y;
+        let z1 = event.acceleration.z;
 
         let x = Math.round(event.accelerationIncludingGravity.x);
         let y = Math.round(event.accelerationIncludingGravity.y);
@@ -151,7 +151,7 @@ class App extends React.Component {
 
         this.console.log("x ", x1, x, " y ", y1, y, " z ", z1, z);
         this.setState({ x: x1, y: y1, z: z1 });
-        this.decode(dur, 0);
+        // this.decode(dur, 0);
         // document.getElementById('rotation-rate-beta').innerHTML = Math.round(event.rotationRate.beta);
         // document.getElementById('rotation-rate-gamma').innerHTML = Math.round(event.rotationRate.gamma);
         // document.getElementById('rotation-rate-alpha').innerHTML = Math.round(event.rotationRate.alpha);
@@ -179,9 +179,8 @@ class App extends React.Component {
           <input type="button" value="Send" onClick={this.start} />
           {/* <input type="button" value="Stop" onClick={this.stopVibrate} /> */}
           <input type="button" value="Receive" onClick={this.handleReceive} />
-          {this.state.receive}
           <div>
-          {this.state.x, this.state.y, this.state.z}
+            {this.state.x, this.state.y, this.state.z}
           </div>
         </header>
       </div>
