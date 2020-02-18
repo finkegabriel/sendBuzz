@@ -176,13 +176,13 @@ class App extends React.Component {
           <input type="button" value="Receive" onClick={this.handleReceive} />
           <div>
             <div>
-              x {this.state.x}
+              x {Math.round(this.state.x)}
             </div>
             <div>
-              y {this.state.y}
+              y {Math.round(this.state.y)}
             </div>
             <div>
-              z {this.state.z}
+              z {Math.round(this.state.z)}
             </div>
           </div>
         </header>
