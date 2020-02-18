@@ -34,9 +34,9 @@ class App extends React.Component {
   calibrate = (x, y, z) => {
     console.log("this should be called once!! ",z);
     let inital = z;
-    setInterval(() => {
-      console.log("end ",inital,final);
+    setTimeout(() => {
       let final = z;
+      console.log("end ",inital,final);
       console.log("final - inital ", final - inital);
     }, 6000);
   }
