@@ -32,13 +32,13 @@ class App extends React.Component {
   }
 
   calibrate = (x, y, z) => {
-    const inital = z;
-    console.log("this should be called once!! ",inital);
-    setTimeout(() => {
-      const final = z;
-      console.log("end ",inital,final);
-      console.log("final - inital ", final - inital);
-    }, 6000);
+    // const inital = z;
+    // console.log("this should be called once!! ",inital);
+    // setTimeout(() => {
+    //   const final = z;
+    // }, 6000);
+    // console.log("end ",final,inital);
+    // console.log("final - inital ", final - inital);
   }
 
   decode = (duration, interval) => {
@@ -119,30 +119,33 @@ class App extends React.Component {
           this.setState({ mode: 'share', segments, current: 0 });
           console.log("segments ", segments);
           this.intervalId = setInterval(() => {
-            let current = this.state.current + 1;
-            if (current === segments.length) {
+            let current = this.state.current +1;
+            if (current === segments.length+1) {
               this.setState({ current: 0 });
-              console.log("stop", this.state.current);
-              // this.stopVibrate();
+              console.log("stop", this.intervalId);
+              clearInterval(this.intervalId);
+              // this.setState({ buffer: buffer });
+              // // console.log("boof ", buffer.reduce((a, b) => a + b, 0));
+              // // let inti = buffer.reduce((a, b) => a + b, 0) * 100;
+              // console.log("buffer ", buffer);
+              // for (let i = 0; i < this.state.buffer.length; i++) {
+              //   console.log("in loop first", this.state.buffer[i]);
+
+              //   // var n = this.state.buffer[i].toString(2);
+              //   // n = "00000000".substr(n.length) + n;
+              //   // console.log("bin ", n);
+              //   // this.encode(n);
+              // }
             } else {
+              // this.stopVibrate();
               this.setState({ current });
               console.log("sending.... ", this.state.current);
-              console.log("seg ", this.state.segments[current - 1]);
-              let buffer = new Buffer(this.state.segments[current - 1], 'base64');
-              this.setState({ buffer: buffer });
-              console.log("boof ", buffer.reduce((a, b) => a + b, 0));
-              let inti = buffer.reduce((a, b) => a + b, 0) * 100;
-              this.setState({ wait: inti });
-              for (let i = 0; i < this.state.buffer.length; i++) {
-                console.log("in loop first", this.state.buffer[i]);
-                var n = this.state.buffer[i].toString(2);
-                n = "00000000".substr(n.length) + n;
-                // console.log("bin ", n);
-                this.encode(n);
-              }
+              console.log("seg ", this.state.segments[current-1]);
+              let buffer = new Buffer(this.state.segments[current-1], 'base64');
+              console.log("buffer  ", buffer);
+
             }
             console.log(this.state.current, 'of', this.state.segments.length);
-            console.log("wait for this long ", this.state.wait);
           }, 6000);
           console.log("intertval ", this.intervalId);
         }
