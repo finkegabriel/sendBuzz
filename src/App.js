@@ -171,9 +171,15 @@ class App extends React.Component {
           {/* <input type="button" value="Stop" onClick={this.stopVibrate} /> */}
           <input type="button" value="Receive" onClick={this.handleReceive} />
           <div>
-            x { this.state.x}
-            y {this.state.y}
-            z {this.state.z}
+            <div>
+              x {this.state.x}
+            </div>
+            <div>
+              y {this.state.y}
+            </div>
+            <div>
+              z {this.state.z}
+            </div>
           </div>
         </header>
       </div>
