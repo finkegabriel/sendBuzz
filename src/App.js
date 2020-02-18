@@ -161,7 +161,7 @@ class App extends React.Component {
   }
 
   handleReceive = () => {
-    vibrateInterval = this.setInterval(() => {
+    vibrateInterval = setInterval(() => {
       this.handleAccel();
     }, 6000);
   }
