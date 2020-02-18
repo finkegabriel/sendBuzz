@@ -145,12 +145,12 @@ class App extends React.Component {
         let y1 = event.acceleration.y;
         let z1 = event.acceleration.z;
 
-        let x = Math.round(event.accelerationIncludingGravity.x);
-        let y = Math.round(event.accelerationIncludingGravity.y);
-        let z = Math.round(event.accelerationIncludingGravity.z);
+        let x = event.accelerationIncludingGravity.x;
+        let y = event.accelerationIncludingGravity.y;
+        let z = event.accelerationIncludingGravity.z;
 
         this.console.log("x ", x1, x, " y ", y1, y, " z ", z1, z);
-        this.setState({ x: x1, y: y1, z: z1 });
+        this.setState({ x: x, y: y, z: z });
         // this.decode(dur, 0);
         // document.getElementById('rotation-rate-beta').innerHTML = Math.round(event.rotationRate.beta);
         // document.getElementById('rotation-rate-gamma').innerHTML = Math.round(event.rotationRate.gamma);
