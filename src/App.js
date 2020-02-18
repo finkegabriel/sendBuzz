@@ -135,7 +135,7 @@ class App extends React.Component {
       }
     }
   }
-  handleAccel = ()=>{
+  handleAccel = () => {
     if (window.DeviceOrientationEvent) {
       // We can listen for change in the device's orientation... works over https only :/
       // this.intervalId = this.setInterval(() => {
@@ -161,9 +161,9 @@ class App extends React.Component {
   }
 
   handleReceive = () => {
-      this.setInterval(()=>{
-        this.handleAccel();
-      },6000);
+    vibrateInterval = this.setInterval(() => {
+      this.handleAccel();
+    }, 6000);
   }
 
   render() {
