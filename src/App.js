@@ -25,7 +25,7 @@ class App extends React.Component {
   };
 
   precise = (x) => {
-    return Number.parseFloat(x).toPrecision(4);
+    return Number.parseFloat(x).toPrecision(2);
   }
 
   decode = (duration, interval) => {
