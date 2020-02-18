@@ -145,9 +145,9 @@ class App extends React.Component {
         let y1 = event.acceleration.y;
         let z1 = event.acceleration.z;
 
-        let x = event.accelerationIncludingGravity.x;
-        let y = event.accelerationIncludingGravity.y;
-        let z = event.accelerationIncludingGravity.z;
+        // let x = event.accelerationIncludingGravity.x;
+        // let y = event.accelerationIncludingGravity.y;
+        // let z = event.accelerationIncludingGravity.z;
         console.log("x ", x1, " y ", y1, " z ", z1);
         this.setState({ x: x1, y: y1, z: z1 });
       });
