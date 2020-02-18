@@ -137,7 +137,7 @@ class App extends React.Component {
   }
 
 
-  handleReceive = (event) => {
+  handleReceive = () => {
     if (window.DeviceOrientationEvent) {
       // We can listen for change in the device's orientation... works over https only :/
       window.addEventListener('devicemotion', function (event) {
@@ -148,28 +148,17 @@ class App extends React.Component {
         let x = event.accelerationIncludingGravity.x;
         let y = event.accelerationIncludingGravity.y;
         let z = event.accelerationIncludingGravity.z;
-
-        this.console.log("x ", x1, x, " y ", y1, y, " z ", z1, z);
-        this.setState({ x: x, y: y, z: z });
-        // this.decode(dur, 0);
-        // document.getElementById('rotation-rate-beta').innerHTML = Math.round(event.rotationRate.beta);
-        // document.getElementById('rotation-rate-gamma').innerHTML = Math.round(event.rotationRate.gamma);
-        // document.getElementById('rotation-rate-alpha').innerHTML = Math.round(event.rotationRate.alpha);
-
-        // document.getElementById('interval').innerHTML = event.interval;
+        this.setInterval(() => {
+          this.console.log("x ", x1, " y ", y1, " z ", z1);
+          // setState({ x: x, y: y, z: z });
+        }, 500)
       });
-      // alert("ACCESS GRANTED");
-
-
     } else {
       // Not supported
       alert("Sorry, your browser doesn't support Device Orientation");
     }
 
   }
-
-
-
 
   render() {
     return (
