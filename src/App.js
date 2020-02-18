@@ -15,9 +15,13 @@ class App extends React.Component {
     receive: 0,
     buffer: [],
     decodeBuffer: [],
-    testData:    "11111111",
+    testData: "00001000",
     testDataOff: "00000000",
     binarayBuffer: [],
+    wait: 6000,
+    x: 0,
+    y: 0,
+    z: 0
   };
 
 
@@ -55,12 +59,12 @@ class App extends React.Component {
 
     for (let i = 0; i < bip.length; i++) {
       console.log(bip[i]);
-      if (bip[i] == 0) {
+      if (bip[i].toString() === "0") {
         console.log("dont send");
         this.stopVibrate();
       } else {
         console.log("data ", bip[i]);
-        this.startPersistentVibrate(dur*AMP*200, 500);
+        this.startPersistentVibrate(dur * AMP * 200, 500);
       }
     }
   }
@@ -111,9 +115,11 @@ class App extends React.Component {
               console.log("seg ", this.state.segments[current - 1]);
               let buffer = new Buffer(this.state.segments[current - 1], 'base64');
               this.setState({ buffer: buffer });
-              console.log("boof ", buffer);
+              console.log("boof ", buffer.reduce((a, b) => a + b, 0));
+              let inti = buffer.reduce((a, b) => a + b, 0) * 100;
+              this.setState({ wait: inti });
               for (let i = 0; i < this.state.buffer.length; i++) {
-                console.log("in loop ", this.state.buffer[i]);
+                console.log("in loop first", this.state.buffer[i]);
                 var n = this.state.buffer[i].toString(2);
                 n = "00000000".substr(n.length) + n;
                 // console.log("bin ", n);
@@ -121,7 +127,8 @@ class App extends React.Component {
               }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
-          }, 10000);
+            console.log("wait for this long ", this.state.wait);
+          }, this.state.wait);
           console.log("intertval ", this.intervalId);
         }
         reader.readAsDataURL(selectedFile);
@@ -143,6 +150,7 @@ class App extends React.Component {
         let z = Math.round(event.accelerationIncludingGravity.z);
 
         this.console.log("x ", x1, x, " y ", y1, y, " z ", z1, z);
+        this.setState({ x: x1, y: y1, z: z1 });
         this.decode(dur, 0);
         // document.getElementById('rotation-rate-beta').innerHTML = Math.round(event.rotationRate.beta);
         // document.getElementById('rotation-rate-gamma').innerHTML = Math.round(event.rotationRate.gamma);
@@ -172,6 +180,9 @@ class App extends React.Component {
           {/* <input type="button" value="Stop" onClick={this.stopVibrate} /> */}
           <input type="button" value="Receive" onClick={this.handleReceive} />
           {this.state.receive}
+          <div>
+          {this.state.x, this.state.y, this.state.z}
+          </div>
         </header>
       </div>
     );
