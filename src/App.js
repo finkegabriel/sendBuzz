@@ -138,9 +138,9 @@ class App extends React.Component {
 
 
   handleReceive = () => {
-    if (window.DeviceOrientationEvent) {
-      // We can listen for change in the device's orientation... works over https only :/
-      this.setInterval(() => {
+    this.setInterval(() => {
+      if (window.DeviceOrientationEvent) {
+        // We can listen for change in the device's orientation... works over https only :/
         window.addEventListener('devicemotion', (event) => {
           let x1 = event.acceleration.x;
           let y1 = event.acceleration.y;
@@ -152,11 +152,11 @@ class App extends React.Component {
           this.console.log("x ", x1, " y ", y1, " z ", z1);
           this.setState({ x: x, y: y, z: z });
         });
-      }, 500);
-    } else {
-      // Not supported
-      alert("Sorry, your browser doesn't support Device Orientation");
-    }
+      } else {
+        // Not supported
+        alert("Sorry, your browser doesn't support Device Orientation");
+      }
+    }, 500);
 
   }
 
