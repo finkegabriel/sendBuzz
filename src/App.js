@@ -24,7 +24,9 @@ class App extends React.Component {
     z: 0
   };
 
-
+  precise = (x) => {
+    return Number.parseFloat(x).toPrecision(4);
+  }
 
   decode = (duration, interval) => {
     console.log("duration: ", duration, " interval: ", interval);
@@ -176,13 +178,13 @@ class App extends React.Component {
           <input type="button" value="Receive" onClick={this.handleReceive} />
           <div>
             <div>
-              x {Math.round(this.state.x)}
+              x {this.precise(this.state.x)}
             </div>
             <div>
-              y {Math.round(this.state.y)}
+              y {this.precise(this.state.y)}
             </div>
             <div>
-              z {Math.round(this.state.z)}
+              z {this.precise(this.state.z)}
             </div>
           </div>
         </header>
