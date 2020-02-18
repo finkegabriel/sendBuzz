@@ -150,7 +150,7 @@ class App extends React.Component {
         let z = event.accelerationIncludingGravity.z;
         this.setInterval(() => {
           this.console.log("x ", x1, " y ", y1, " z ", z1);
-          // setState({ x: x, y: y, z: z });
+          setState({ x: x, y: y, z: z });
         }, 500)
       });
     } else {
