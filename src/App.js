@@ -21,11 +21,23 @@ class App extends React.Component {
     wait: 6000,
     x: 0,
     y: 0,
-    z: 0
+    z: 0,
+    ding: 'Ding!!',
+    dingBoolean: false,
+    isCalibrated: false,
   };
 
   precise = (x) => {
     return Number.parseFloat(x).toPrecision(2);
+  }
+
+  calibrate = (x, y, z) => {
+    console.log("this should be called once!! ");
+    let inital = z;
+    setInterval(() => {
+      let final = z;
+      console.log("final - inital ", final - inital);
+    }, 6000);
   }
 
   decode = (duration, interval) => {
@@ -143,15 +155,20 @@ class App extends React.Component {
       // this.intervalId = this.setInterval(() => {
 
       window.addEventListener('devicemotion', (event) => {
-        let x1 = event.acceleration.x;
-        let y1 = event.acceleration.y;
-        let z1 = event.acceleration.z;
+        let x1 = this.precise(event.acceleration.x);
+        let y1 = this.precise(event.acceleration.y);
+        let z1 = this.precise(event.acceleration.z);
 
         // let x = event.accelerationIncludingGravity.x;
         // let y = event.accelerationIncludingGravity.y;
         // let z = event.accelerationIncludingGravity.z;
-        console.log("x ", x1, " y ", y1, " z ", z1);
-        this.setState({ x: x1, y: y1, z: z1 });
+        // console.log("x ", x1, " y ", y1, " z ", z1);
+
+        if (this.state.isCalibrated === true) {
+          this.setState({ x: x1, y: y1, z: z1 });
+        } else {
+          this.calibrate(x1, y1, z1);
+        }
       });
       // }, 6000);
     } else {
@@ -159,7 +176,6 @@ class App extends React.Component {
       alert("Sorry, your browser doesn't support Device Orientation");
     }
     // this.intervalId();
-
   }
 
   handleReceive = () => {
@@ -176,6 +192,7 @@ class App extends React.Component {
           <input type="button" value="Send" onClick={this.start} />
           {/* <input type="button" value="Stop" onClick={this.stopVibrate} /> */}
           <input type="button" value="Receive" onClick={this.handleReceive} />
+          {(this.state.dingBoolean === true) ? this.state.ding : ''}
           <div>
             <div>
               x {this.precise(this.state.x)}
