@@ -128,7 +128,7 @@ class App extends React.Component {
             }
             console.log(this.state.current, 'of', this.state.segments.length);
             console.log("wait for this long ", this.state.wait);
-          }, this.state.wait);
+          }, 6000);
           console.log("intertval ", this.intervalId);
         }
         reader.readAsDataURL(selectedFile);
@@ -138,9 +138,9 @@ class App extends React.Component {
 
 
   handleReceive = () => {
-    var intervalID = this.setInterval(() => {
-      if (window.DeviceOrientationEvent) {
-        // We can listen for change in the device's orientation... works over https only :/
+    if (window.DeviceOrientationEvent) {
+      // We can listen for change in the device's orientation... works over https only :/
+      this.intervalId = this.setInterval(() => {
         window.addEventListener('devicemotion', (event) => {
           let x1 = event.acceleration.x;
           let y1 = event.acceleration.y;
@@ -152,12 +152,12 @@ class App extends React.Component {
           this.console.log("x ", x1, " y ", y1, " z ", z1);
           this.setState({ x: x, y: y, z: z });
         });
-      } else {
-        // Not supported
-        alert("Sorry, your browser doesn't support Device Orientation");
-      }
-    }, 500);
-    intervalID();
+      }, 6000);
+    } else {
+      // Not supported
+      alert("Sorry, your browser doesn't support Device Orientation");
+    }
+    this.intervalId();
 
   }
 
