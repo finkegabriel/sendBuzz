@@ -78,9 +78,9 @@ class App extends React.Component {
       overFlow.push(binary[i]);
       if (i % 2 === 0) {
         // console.log(i);
-        final.push(binary[i] * 100, timer);
+        final.push(binary[i] * 10000, timer);
       } else {
-        final.push(binary[i] * 100, timer);
+        final.push(binary[i] * 10000, timer);
       }
       console.log(final);
       navigator.vibrate(final);
