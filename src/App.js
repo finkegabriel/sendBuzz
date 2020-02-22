@@ -163,6 +163,7 @@ class App extends React.Component {
         // console.log("x ", x1, " y ", y1, " z ", z1);
 
         this.setState({ x: x1, y: y1, z: z1 });
+        console.log(x1, y1, z1);
 
       });
       // }, 6000);
@@ -174,9 +175,9 @@ class App extends React.Component {
   }
 
   handleReceive = () => {
-    vibrateInterval = setInterval(() => {
+    // vibrateInterval = setInterval(() => {
       this.handleAccel();
-    }, 6000);
+    // }, 6000);
   }
 
   render() {
