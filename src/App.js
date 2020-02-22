@@ -3,7 +3,6 @@ import './App.css';
 
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
-const dur = 2;
 const AMP = 100000;
 
 class App extends React.Component {
@@ -68,19 +67,23 @@ class App extends React.Component {
   }
 
   encode = (binary) => {
-    var str = binary;
-    var res = str.split("", 8);
-    let bip = res;
+    // binary.forEach(p => {
+    //   this.startPersistentVibrate(p,200);
+    // });
+    let overFlow = [];
+    let final = [];
+    const timer = 500;
 
-    for (let i = 0; i < bip.length; i++) {
-      console.log(bip[i]);
-      if (bip[i].toString() === "0") {
-        console.log("dont send");
-        this.stopVibrate();
+    for (let i = 0; i < binary.length; i++) {
+      overFlow.push(binary[i]);
+      if (i % 2 === 0) {
+        // console.log(i);
+        final.push(binary[i]*10, timer);
       } else {
-        console.log("data ", bip[i]);
-        this.startPersistentVibrate(dur * AMP * 200, 500);
+        final.push(binary[i]*10, timer);
       }
+      console.log(final);
+      navigator.vibrate(final);
     }
   }
 
@@ -119,8 +122,8 @@ class App extends React.Component {
           this.setState({ mode: 'share', segments, current: 0 });
           console.log("segments ", segments);
           this.intervalId = setInterval(() => {
-            let current = this.state.current +1;
-            if (current === segments.length+1) {
+            let current = this.state.current + 1;
+            if (current === segments.length + 1) {
               this.setState({ current: 0 });
               console.log("stop", this.intervalId);
               clearInterval(this.intervalId);
@@ -140,10 +143,13 @@ class App extends React.Component {
               // this.stopVibrate();
               this.setState({ current });
               console.log("sending.... ", this.state.current);
-              console.log("seg ", this.state.segments[current-1]);
-              let buffer = new Buffer(this.state.segments[current-1], 'base64');
-              console.log("buffer  ", buffer);
-
+              console.log("seg ", this.state.segments[current - 1]);
+              let buffer = new Buffer(this.state.segments[current - 1], 'base64');
+              // console.log("buffer  ", buffer);
+              this.setState({ buffer: buffer });
+              // for (let i = 0; i < this.state.buffer.length; i++) {
+              this.encode(buffer);
+              // }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
           }, 6000);
