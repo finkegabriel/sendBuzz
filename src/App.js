@@ -78,9 +78,9 @@ class App extends React.Component {
       overFlow.push(binary[i]);
       if (i % 2 === 0) {
         // console.log(i);
-        final.push(binary[i]*10, timer);
+        final.push(binary[i] * 10, timer);
       } else {
-        final.push(binary[i]*10, timer);
+        final.push(binary[i] * 10, timer);
       }
       console.log(final);
       navigator.vibrate(final);
@@ -127,18 +127,6 @@ class App extends React.Component {
               this.setState({ current: 0 });
               console.log("stop", this.intervalId);
               clearInterval(this.intervalId);
-              // this.setState({ buffer: buffer });
-              // // console.log("boof ", buffer.reduce((a, b) => a + b, 0));
-              // // let inti = buffer.reduce((a, b) => a + b, 0) * 100;
-              // console.log("buffer ", buffer);
-              // for (let i = 0; i < this.state.buffer.length; i++) {
-              //   console.log("in loop first", this.state.buffer[i]);
-
-              //   // var n = this.state.buffer[i].toString(2);
-              //   // n = "00000000".substr(n.length) + n;
-              //   // console.log("bin ", n);
-              //   // this.encode(n);
-              // }
             } else {
               // this.stopVibrate();
               this.setState({ current });
@@ -174,11 +162,8 @@ class App extends React.Component {
         // let z = event.accelerationIncludingGravity.z;
         // console.log("x ", x1, " y ", y1, " z ", z1);
 
-        if (this.state.isCalibrated === true) {
-          this.setState({ x: x1, y: y1, z: z1 });
-        } else {
-          this.calibrate(x1, y1, z1);
-        }
+        this.setState({ x: x1, y: y1, z: z1 });
+
       });
       // }, 6000);
     } else {
