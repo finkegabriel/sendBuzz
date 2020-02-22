@@ -164,7 +164,7 @@ class App extends React.Component {
 
         this.setState({ x: x1, y: y1, z: z1 });
         // console.log(x1, y1, z1);
-        if(this.state.z<-.40){
+        if(z1<-.20){
           console.log("DING!!");
         }
       });
