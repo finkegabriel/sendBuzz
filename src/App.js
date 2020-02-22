@@ -163,8 +163,10 @@ class App extends React.Component {
         // console.log("x ", x1, " y ", y1, " z ", z1);
 
         this.setState({ x: x1, y: y1, z: z1 });
-        console.log(x1, y1, z1);
-
+        // console.log(x1, y1, z1);
+        if(z1<1){
+          console.log("DING!!");
+        }
       });
       // }, 6000);
     } else {
