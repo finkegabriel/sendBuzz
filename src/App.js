@@ -72,15 +72,15 @@ class App extends React.Component {
     // });
     let overFlow = [];
     let final = [];
-    const timer = 500;
+    const timer = 1000;
 
     for (let i = 0; i < binary.length; i++) {
       overFlow.push(binary[i]);
       if (i % 2 === 0) {
         // console.log(i);
-        final.push(binary[i] * 100, timer);
+        final.push(binary[i] * 100, timer, timer);
       } else {
-        final.push(binary[i] * 100, timer);
+        final.push(binary[i] * 100, timer, timer);
       }
       console.log(final);
       navigator.vibrate(final);
@@ -164,7 +164,7 @@ class App extends React.Component {
 
         this.setState({ x: x1, y: y1, z: z1 });
         // console.log(x1, y1, z1);
-        if(z1<-.20){
+        if (z1 < -.20) {
           console.log("DING!!");
         }
       });
@@ -178,7 +178,7 @@ class App extends React.Component {
 
   handleReceive = () => {
     // vibrateInterval = setInterval(() => {
-      this.handleAccel();
+    this.handleAccel();
     // }, 6000);
   }
 
