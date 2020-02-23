@@ -158,11 +158,8 @@ class App extends React.Component {
         let y1 = this.precise(event.acceleration.y);
         let z1 = this.precise(event.acceleration.z);
 
-        // let x = event.accelerationIncludingGravity.x;
-        // let y = event.accelerationIncludingGravity.y;
-        // let z = event.accelerationIncludingGravity.z;
         // console.log("x ", x1, " y ", y1, " z ", z1);
-
+        this.setState({ z: z1 });
         const kf = new KalmanFilter();
         if (kf.filter(z1) < -.001) {
           console.log("ding");
