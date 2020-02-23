@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import KalmanFilter from 'kalmanjs';
-import lowpass from 'low-pass-filter';
+import { lowPassFilter } from 'low-pass-filter';
 
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
@@ -162,7 +162,7 @@ class App extends React.Component {
         // console.log("x ", x1, " y ", y1, " z ", z1);
         this.setState({ z: z1 });
         const kf = new KalmanFilter();
-        let fi = lowpass.lowPassFilter(z1, 22050, 44100, 2);
+        let fi = lowPassFilter(z1, 22050, 44100, 2);
         console.log(fi);
         // if (kf.filter(z1) < -.001) {
         //   console.log("ding");
