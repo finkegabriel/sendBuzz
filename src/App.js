@@ -169,7 +169,9 @@ class App extends React.Component {
         //   console.log("DING!!");
         // }
         const kf = new KalmanFilter();
-        console.log(kf.filter(z1));
+        if(kf.filter(z1)<-.001){
+          console.log("ding");
+        }
       });
       // }, 6000);
     } else {
