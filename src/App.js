@@ -163,14 +163,14 @@ class App extends React.Component {
       // let y = event.accelerationIncludingGravity.y;
       // let z = event.accelerationIncludingGravity.z;
       // console.log("x ", x1, " y ", y1, " z ", z1);
-      var accelerometer = new Accelerometer({ frequency: 80 })
-      accelerometer.addEventListener('reading', e => {
-        // console.log("Acceleration along the X-axis " + accelerometer.x);
-        // console.log("Acceleration along the Y-axis " + accelerometer.y);
-        console.log("Acceleration along the Z-axis " + accelerometer.z);
-        this.setState({ z: accelerometer.z });
-      });
-      accelerometer.start();
+      // var accelerometer = new Accelerometer({ frequency: 80 })
+      // accelerometer.addEventListener('reading', e => {
+      //   // console.log("Acceleration along the X-axis " + accelerometer.x);
+      //   // console.log("Acceleration along the Y-axis " + accelerometer.y);
+      //   console.log("Acceleration along the Z-axis " + accelerometer.z);
+      //   this.setState({ z: accelerometer.z });
+      // });
+      // accelerometer.start();
 
       // const kf = new KalmanFilter();
       // if (kf.filter(z1) < -.001) {
