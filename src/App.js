@@ -162,8 +162,8 @@ class App extends React.Component {
         // console.log("x ", x1, " y ", y1, " z ", z1);
         this.setState({ z: z1 });
         const kf = new KalmanFilter();
-        let fi = lowPassFilter(z1, 22050, 44100, 2);
-        console.log(fi);
+        console.log(lowPassFilter(z1, 22050, 44100, 2));
+        
         // if (kf.filter(z1) < -.001) {
         //   console.log("ding");
         // }
