@@ -153,26 +153,27 @@ class App extends React.Component {
       // We can listen for change in the device's orientation... works over https only :/
       // this.intervalId = this.setInterval(() => {
 
-      window.addEventListener('devicemotion', (event) => {
-        let x1 = this.precise(event.acceleration.x);
-        let y1 = this.precise(event.acceleration.y);
-        let z1 = this.precise(event.acceleration.z);
+      // window.addEventListener('devicemotion', (event) => {
+      //   let x1 = this.precise(event.acceleration.x);
+      //   let y1 = this.precise(event.acceleration.y);
+      //   let z1 = this.precise(event.acceleration.z);
 
-        // let x = event.accelerationIncludingGravity.x;
-        // let y = event.accelerationIncludingGravity.y;
-        // let z = event.accelerationIncludingGravity.z;
-        // console.log("x ", x1, " y ", y1, " z ", z1);
-
-        this.setState({ x: x1, y: y1, z: z1 });
-        // console.log(x1, y1, z1);
-        // if (z1 < -.001) {
-        //   console.log("DING!!");
-        // }
-        const kf = new KalmanFilter();
-        if(kf.filter(z1)<-.001){
-          console.log("ding");
-        }
+      // let x = event.accelerationIncludingGravity.x;
+      // let y = event.accelerationIncludingGravity.y;
+      // let z = event.accelerationIncludingGravity.z;
+      // console.log("x ", x1, " y ", y1, " z ", z1);
+      var accelerometer = new Accelerometer({ frequency: 80 })
+      accelerometer.addEventListener('reading', e => {
+        // console.log("Acceleration along the X-axis " + accelerometer.x);
+        // console.log("Acceleration along the Y-axis " + accelerometer.y);
+        console.log("Acceleration along the Z-axis " + accelerometer.z);
+        this.setState({ z: accelerometer.z });
       });
+      // const kf = new KalmanFilter();
+      // if (kf.filter(z1) < -.001) {
+      //   console.log("ding");
+      // }
+      // });
       // }, 6000);
     } else {
       // Not supported
