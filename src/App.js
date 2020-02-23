@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import KalmanFilter from 'kalmanjs';
 
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
@@ -164,9 +165,11 @@ class App extends React.Component {
 
         this.setState({ x: x1, y: y1, z: z1 });
         // console.log(x1, y1, z1);
-        if (z1 < -.001) {
-          console.log("DING!!");
-        }
+        // if (z1 < -.001) {
+        //   console.log("DING!!");
+        // }
+        const kf = new KalmanFilter();
+        console.log(kf.filter(z1));
       });
       // }, 6000);
     } else {
