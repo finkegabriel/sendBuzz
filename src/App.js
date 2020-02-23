@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import KalmanFilter from 'kalmanjs';
-import ReactAccelerometer from 'react-accelerometer'
 
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
@@ -154,29 +153,21 @@ class App extends React.Component {
       // We can listen for change in the device's orientation... works over https only :/
       // this.intervalId = this.setInterval(() => {
 
-      // window.addEventListener('devicemotion', (event) => {
-      //   let x1 = this.precise(event.acceleration.x);
-      //   let y1 = this.precise(event.acceleration.y);
-      //   let z1 = this.precise(event.acceleration.z);
+      window.addEventListener('devicemotion', (event) => {
+        let x1 = this.precise(event.acceleration.x);
+        let y1 = this.precise(event.acceleration.y);
+        let z1 = this.precise(event.acceleration.z);
 
-      // let x = event.accelerationIncludingGravity.x;
-      // let y = event.accelerationIncludingGravity.y;
-      // let z = event.accelerationIncludingGravity.z;
-      // console.log("x ", x1, " y ", y1, " z ", z1);
-      // var accelerometer = new Accelerometer({ frequency: 80 })
-      // accelerometer.addEventListener('reading', e => {
-      //   // console.log("Acceleration along the X-axis " + accelerometer.x);
-      //   // console.log("Acceleration along the Y-axis " + accelerometer.y);
-      //   console.log("Acceleration along the Z-axis " + accelerometer.z);
-      //   this.setState({ z: accelerometer.z });
-      // });
-      // accelerometer.start();
+        // let x = event.accelerationIncludingGravity.x;
+        // let y = event.accelerationIncludingGravity.y;
+        // let z = event.accelerationIncludingGravity.z;
+        // console.log("x ", x1, " y ", y1, " z ", z1);
 
-      // const kf = new KalmanFilter();
-      // if (kf.filter(z1) < -.001) {
-      //   console.log("ding");
-      // }
-      // });
+        const kf = new KalmanFilter();
+        if (kf.filter(z1) < -.001) {
+          console.log("ding");
+        }
+      });
       // }, 6000);
     } else {
       // Not supported
@@ -200,19 +191,7 @@ class App extends React.Component {
           {/* <input type="button" value="Stop" onClick={this.stopVibrate} /> */}
           <input type="button" value="Receive" onClick={this.handleReceive} />
           {(this.state.dingBoolean === true) ? this.state.ding : ''}
-          <ReactAccelerometer>
-            {(position, rotation) => (
-              <ul>
-                <li>x: {position.x}</li>
-                <li>y: {position.y}</li>
-                <li>z: {position.z}</li>
-                <li>rotation alpha: {rotation.alpha}</li>
-                <li>rotation beta: {rotation.beta}</li>
-                <li>rotation gamma: {rotation.gamma}</li>
-              </ul>
-            )}
-          </ReactAccelerometer>
-          {/* <div>
+          <div>
             <div>
               x {this.precise(this.state.x)}
             </div>
@@ -222,7 +201,7 @@ class App extends React.Component {
             <div>
               z {this.precise(this.state.z)}
             </div>
-          </div> */}
+          </div>
         </header>
       </div>
     );
