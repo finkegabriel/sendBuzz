@@ -163,7 +163,7 @@ class App extends React.Component {
         this.setState({ z: z1 });
         const kf = new KalmanFilter();
         // console.log();
-        if (lowPassFilter(z1, 22050, 44100, 2) < -.001) {
+        if (kf.filter(z1) < -.001) {
           console.log("DING!!");
         }
         // if (kf.filter(z1) < -.001) {
