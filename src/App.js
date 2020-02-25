@@ -80,10 +80,11 @@ class App extends React.Component {
     for (let i = 0; i < overFlow.length; i++) {
       temp.push(overFlow[i].split(''), timer);
       for (let o = 0; o < temp.length; o++) {
-        if (temp[o] === '1') {
-          console.log("bin ", temp[o])
-          navigator.vibrate(1700);
-        }
+        console.log("ll ",temp[0]);
+        // if (temp[o] === '1') {
+        //   console.log("bin ", temp[o])
+        //   navigator.vibrate(1700);
+        // }
       }
       // temp.length = 0;
     }
