@@ -134,7 +134,7 @@ class App extends React.Component {
               // console.log("buffer  ", buffer);
               this.setState({ buffer: buffer });
               // for (let i = 0; i < this.state.buffer.length; i++) {
-              console.log((buffer).toString(2))
+              console.log(Number(buffer).toString(2))
               // this.encode(buffer);
               // }
             }
