@@ -87,13 +87,11 @@ class App extends React.Component {
       // console.log(element);
       // for (let q = 0; q < element.length; q++) {
       element.forEach((res) => {
-        console.log(res);
+        if (res == 1) {
+          console.log("bin ", res)
+          navigator.vibrate([1700, timer]);
+        }
       });
-      // if (element == 1) {
-      //   console.log("bin ", element)
-      //   navigator.vibrate([1700, timer]);
-      // }
-      // }
     });
   }
 
