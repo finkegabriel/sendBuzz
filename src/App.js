@@ -32,6 +32,10 @@ class App extends React.Component {
     return Number.parseFloat(x).toPrecision(2);
   }
 
+  dec2bin = (dec) => {
+    return (dec >>> 0).toString(2);
+  }
+
   calibrate = (x, y, z) => {
     // const inital = z;
     // console.log("this should be called once!! ",inital);
@@ -80,8 +84,8 @@ class App extends React.Component {
     //   } else {
     //     final.push(binary[i] * 10, timer);
     //   }
-      // console.log(final);
-      // navigator.vibrate(final);
+    // console.log(final);
+    // navigator.vibrate(final);
     // }
   }
 
@@ -133,10 +137,11 @@ class App extends React.Component {
               let buffer = new Buffer(this.state.segments[current - 1], 'base64');
               // console.log("buffer  ", buffer);
               this.setState({ buffer: buffer });
-              // for (let i = 0; i < this.state.buffer.length; i++) {
-              console.log(Number(buffer).toString(2))
-              // this.encode(buffer);
-              // }
+              for (let i = 0; i < buffer.length; i++) {
+                console.log("dec to bin ", this.dec2bin(buffer[i]));
+                // console.log(Number(buffer).toString(2))
+                // this.encode(buffer);
+              }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
           }, 6000);
