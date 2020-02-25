@@ -74,7 +74,7 @@ class App extends React.Component {
     // });
     let overFlow = [];
     let final = [];
-    const timer = 1000;
+    const timer = 2000;
 
     for (let i = 0; i < binary.length; i++) {
       overFlow.push(binary[i]);
