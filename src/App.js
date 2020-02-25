@@ -83,16 +83,17 @@ class App extends React.Component {
         final.push(temp[o]);
       }
     }
-    final.forEach(element => {
-      // console.log(element);
-      for (let q = 0; q < element.length; q++) {
-        console.log(element[q]);
-        if (element[q] == 1) {
-          console.log("bin ", element)
-          navigator.vibrate([1700, timer]);
-        }
-      }
-    });
+    console.log("fin ",final);
+    // final.forEach(element => {
+    //   // console.log(element);
+    //   for (let q = 0; q < element.length; q++) {
+    //     console.log(element[q]);
+    //     if (element[q] == 1) {
+    //       console.log("bin ", element)
+    //       navigator.vibrate([1700, timer]);
+    //     }
+    //   }
+    // });
   }
 
   start = () => {
