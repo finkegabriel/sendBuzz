@@ -82,9 +82,9 @@ class App extends React.Component {
       for (let o = 0; o < temp.length; o++) {
         temp[o].forEach(res => {
           if (res === '1') {
-            final.push(1);
+            final.push(1700);
           } else {
-            final.push(0);
+            final.push(timer);
           }
         });
       }
@@ -97,10 +97,7 @@ class App extends React.Component {
     cu.forEach((l) => {
       l.forEach(function (res) {
         console.log(res);
-        if (res === 1) {
-          console.log("sad code ");
-          navigator.vibrate(1700, timer);
-        }
+        navigator.vibrate(cu);
       });
     });
     // }, 2000);
