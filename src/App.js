@@ -84,10 +84,11 @@ class App extends React.Component {
       }
     }
     final.forEach(element => {
-      if (element = 1) {
-        console.log("bin ", element)
-        navigator.vibrate([1700, timer]);
-      }
+      console.log(element);
+      // if (element = 1) {
+      //   console.log("bin ", element)
+      //   navigator.vibrate([1700, timer]);
+      // }
     });
   }
 
