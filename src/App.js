@@ -81,7 +81,7 @@ class App extends React.Component {
       temp.push(overFlow[i].split(''), timer);
       for (let o = 0; o < temp.length; o++) {
         console.log("bin ", temp[i])
-        if (temp[i] === '1') {
+        if (temp[o] === '1') {
           navigator.vibrate(1700);
         }
       }
