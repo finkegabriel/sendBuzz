@@ -75,14 +75,17 @@ class App extends React.Component {
     let final = [];
     const timer = 2000;
     overFlow.push(binary);
-    console.log("bin ",binary);
+    // console.log("bin ", binary); //debug length of binary string
+
     for (let i = 0; i < overFlow.length; i++) {
       temp.push(overFlow[i].split(''), timer);
       for (let o = 0; o < temp.length; o++) {
-        if (temp === 1) {
+        console.log("bin ", temp, temp[i])
+        if (temp[i] === 1) {
           navigator.vibrate(1700);
         }
       }
+      temp.length = 0;
     }
     // for (let i = 0; i < binary.length; i++) {
     //   overFlow.push(binary[i]);
