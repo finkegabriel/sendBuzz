@@ -82,25 +82,29 @@ class App extends React.Component {
       for (let o = 0; o < temp.length; o++) {
         temp[o].forEach(res => {
           if (res === '1') {
-            final.push(1700);
+            final.push(1);
           } else {
-            final.push(timer);
+            final.push(0);
           }
         });
       }
     }
     //^ this is dumb... :/
 
+    
+    vibrateInterval = setInterval(function () {
     let cu = chunk(final, 8);
-
-    // vibrateInterval = setInterval(function () {
+    console.log("here ",cu);
     cu.forEach((l) => {
       l.forEach(function (res) {
         console.log(res);
-        navigator.vibrate(cu);
+        if (res === 1) {
+          console.log("sad code ");
+          navigator.vibrate(1700, timer);
+        }
       });
     });
-    // }, 2000);
+    }, 2000);
   }
 
   start = () => {
