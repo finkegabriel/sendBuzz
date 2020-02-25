@@ -81,24 +81,13 @@ class App extends React.Component {
       temp.push(overFlow[i].split(''));
       for (let o = 0; o < temp.length; o++) {
         temp[o].forEach(element => {
-          console.log("ll ", element);
+          if (element === '1') {
+            console.log("bin ", element)
+            navigator.vibrate([1700, timer]);
+          }
         });
-        // if (temp[o] === '1') {
-        //   console.log("bin ", temp[o])
-        //   navigator.vibrate(1700);
       }
-      // }
-      // temp.length = 0;
     }
-    // for (let i = 0; i < binary.length; i++) {
-    //   overFlow.push(binary[i]);
-    //   if (i % 2 === 0) {
-    //     final.push(binary[i] * 10, timer);
-    //   } else {
-    //     final.push(binary[i] * 10, timer);
-    //   }
-    // console.log(final);
-    // }
   }
 
   start = () => {
