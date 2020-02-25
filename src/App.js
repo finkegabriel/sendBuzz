@@ -69,24 +69,20 @@ class App extends React.Component {
   }
 
   encode = (binary) => {
-    // binary.forEach(p => {
-    //   this.startPersistentVibrate(p,200);
-    // });
     let overFlow = [];
     let final = [];
     const timer = 2000;
-
-    for (let i = 0; i < binary.length; i++) {
-      overFlow.push(binary[i]);
-      if (i % 2 === 0) {
-        // console.log(i);
-        final.push(binary[i] * 10, timer);
-      } else {
-        final.push(binary[i] * 10, timer);
-      }
-      console.log(final);
-      navigator.vibrate(final);
-    }
+    console.log(binary);
+    // for (let i = 0; i < binary.length; i++) {
+    //   overFlow.push(binary[i]);
+    //   if (i % 2 === 0) {
+    //     final.push(binary[i] * 10, timer);
+    //   } else {
+    //     final.push(binary[i] * 10, timer);
+    //   }
+      // console.log(final);
+      // navigator.vibrate(final);
+    // }
   }
 
   start = () => {
@@ -138,7 +134,8 @@ class App extends React.Component {
               // console.log("buffer  ", buffer);
               this.setState({ buffer: buffer });
               // for (let i = 0; i < this.state.buffer.length; i++) {
-              this.encode(buffer);
+              console.log((buffer).toString(2))
+              // this.encode(buffer);
               // }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
