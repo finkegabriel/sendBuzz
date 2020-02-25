@@ -65,7 +65,6 @@ class App extends React.Component {
   // Start persistent vibration at given duration and interval
   // Assumes a number value is given
   startPersistentVibrate = (duration, interval) => {
-    // console.log("BUZZZzzZZZzzzzzzzzzzz", duration, interval);
     console.log("in loop ", duration);
     vibrateInterval = setInterval(() => {
       navigator.vibrate(duration);
@@ -79,9 +78,16 @@ class App extends React.Component {
     const timer = 2000;
     overFlow.push(binary);
     console.log("bin ", binary);
+
     for (let i = 0; i < overFlow.length; i++) {
-      console.log("bit ", overFlow[i]);
+      let p = overFlow[i].slice(1,overFlow.length);
+      console.log("bit ", p);
+      // temp.push(overFlow[i], timer);
+      // if(i>overFlow.length){
+
+      // }
     }
+
     // for (let i = 0; i < binary.length; i++) {
     //   overFlow.push(binary[i]);
     //   if (i % 2 === 0) {
@@ -143,9 +149,8 @@ class App extends React.Component {
               // console.log("buffer  ", buffer);
               this.setState({ buffer: buffer });
               for (let i = 0; i < buffer.length; i++) {
-                console.log("dec to bin ", this.dec2bin(buffer[i]));
+                // console.log("dec to bin ", this.dec2bin(buffer[i]));
                 let num = this.dec2bin(buffer[i]);
-                // console.log(Number(buffer).toString(2))
                 this.encode(num);
               }
             }
