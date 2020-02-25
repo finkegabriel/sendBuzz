@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 import KalmanFilter from 'kalmanjs';
-import { lowPassFilter } from 'low-pass-filter';
+import { chunk } from 'lodash';
 
 var vibrateInterval;
 const SEGMENT_SIZE = 80;
 const AMP = 100000;
+let final = [];
 
 class App extends React.Component {
   state = {
@@ -72,25 +73,37 @@ class App extends React.Component {
   encode = (binary) => {
     let overFlow = [];
     let temp = [];
-    let final = [];
     const timer = 2000;
     overFlow.push(binary);
-    // console.log("bin ", binary); //debug length of binary string
 
+    //sad code starts here
     for (let i = 0; i < overFlow.length; i++) {
       temp.push(overFlow[i].split(''));
       for (let o = 0; o < temp.length; o++) {
-        final.push(temp[o]);
+        temp[o].forEach(res => {
+          if (res === '1') {
+            final.push(1);
+          } else {
+            final.push(0);
+          }
+        });
       }
     }
-    final.forEach((element) => {
-      element.forEach((res) => {
+    //^ this is dumb... :/
+
+    let cu = chunk(final, 8);
+
+    // vibrateInterval = setInterval(function () {
+    cu.forEach((l) => {
+      l.forEach(function (res) {
+        console.log(res);
         if (res === 1) {
-          console.log("bin ", res)
-          navigator.vibrate([1700, timer]);
+          console.log("sad code ");
+          navigator.vibrate(1700, timer);
         }
       });
     });
+    // }, 2000);
   }
 
   start = () => {
@@ -141,6 +154,7 @@ class App extends React.Component {
               let buffer = new Buffer(this.state.segments[current - 1], 'base64');
               // console.log("buffer  ", buffer);
               this.setState({ buffer: buffer });
+              console.log(buffer);
               for (let i = 0; i < buffer.length; i++) {
                 // console.log("dec to bin ", this.dec2bin(buffer[i]));
                 let num = this.dec2bin(buffer[i]);
