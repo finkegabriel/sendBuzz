@@ -74,9 +74,14 @@ class App extends React.Component {
 
   encode = (binary) => {
     let overFlow = [];
+    let temp = [];
     let final = [];
     const timer = 2000;
-    console.log(binary);
+    overFlow.push(binary);
+    console.log("bin ", binary);
+    for (let i = 0; i < overFlow.length; i++) {
+      console.log("bit ", overFlow[i]);
+    }
     // for (let i = 0; i < binary.length; i++) {
     //   overFlow.push(binary[i]);
     //   if (i % 2 === 0) {
@@ -139,8 +144,9 @@ class App extends React.Component {
               this.setState({ buffer: buffer });
               for (let i = 0; i < buffer.length; i++) {
                 console.log("dec to bin ", this.dec2bin(buffer[i]));
+                let num = this.dec2bin(buffer[i]);
                 // console.log(Number(buffer).toString(2))
-                // this.encode(buffer);
+                this.encode(num);
               }
             }
             console.log(this.state.current, 'of', this.state.segments.length);
