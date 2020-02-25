@@ -81,9 +81,7 @@ class App extends React.Component {
 
     for (let i = 0; i < overFlow.length; i++) {
       temp.push(overFlow[i]);
-      for (let p = 0; p < temp.length; p++) {
-        console.log("bad ", temp[p]);
-      }
+      console.log("con ",temp.slice(0, overFlow.length));
     }
 
     // for (let i = 0; i < binary.length; i++) {
