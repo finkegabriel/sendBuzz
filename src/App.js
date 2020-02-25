@@ -81,8 +81,7 @@ class App extends React.Component {
     for (let i = 0; i < overFlow.length; i++) {
       temp.push(overFlow[i].split(''));
     }
-    final.push(temp);
-    console.log("pp ",final);
+    console.log("pp ",temp);
     // for (let i = 0; i < binary.length; i++) {
     //   overFlow.push(binary[i]);
     //   if (i % 2 === 0) {
