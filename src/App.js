@@ -91,20 +91,29 @@ class App extends React.Component {
     }
     //^ this is dumb... :/
 
-    
-    vibrateInterval = setInterval(function () {
+
+    // vibrateInterval = setInterval(function () {
     let cu = chunk(final, 8);
-    console.log("here ",cu);
-    cu.forEach((l) => {
-      l.forEach(function (res) {
-        console.log(res);
+    this.setState({ decodeBuffer: cu });
+    // console.log("here ",this.state.decodeBuffer);
+    for (let i = 0; i < this.state.decodeBuffer.length; i++) {
+      this.state.decodeBuffer[i].forEach((res) => {
         if (res === 1) {
-          console.log("sad code ");
+          console.log("hh ", res);
           navigator.vibrate(1700, timer);
         }
       });
-    });
-    }, 2000);
+    }
+    // cu.forEach((l) => {
+    //   l.forEach(function (res) {
+    //     console.log(res);
+    //     if (res === 1) {
+    //       console.log("sad code ");
+    //       navigator.vibrate(1700, timer);
+    //     }
+    //   });
+    // });
+    // }, 2000);
   }
 
   start = () => {
