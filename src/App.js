@@ -84,10 +84,8 @@ class App extends React.Component {
       }
     }
     final.forEach((element) => {
-      // console.log(element);
-      // for (let q = 0; q < element.length; q++) {
       element.forEach((res) => {
-        if (res == 1) {
+        if (res === 1) {
           console.log("bin ", res)
           navigator.vibrate([1700, timer]);
         }
