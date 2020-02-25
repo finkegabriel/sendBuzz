@@ -80,12 +80,10 @@ class App extends React.Component {
     console.log("bin ", binary);
 
     for (let i = 0; i < overFlow.length; i++) {
-      let p = overFlow[i].slice(1,overFlow.length);
-      console.log("bit ", p);
-      // temp.push(overFlow[i], timer);
-      // if(i>overFlow.length){
-
-      // }
+      temp.push(overFlow[i]);
+      for (let p = 0; p < temp.length; p++) {
+        console.log("bad ", temp[p]);
+      }
     }
 
     // for (let i = 0; i < binary.length; i++) {
