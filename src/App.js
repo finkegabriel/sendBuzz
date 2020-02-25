@@ -80,14 +80,15 @@ class App extends React.Component {
     for (let i = 0; i < overFlow.length; i++) {
       temp.push(overFlow[i].split(''));
       for (let o = 0; o < temp.length; o++) {
-        temp[o].forEach(element => {
-          if (element = 1) {
-            console.log("bin ", element)
-            navigator.vibrate([1700, timer]);
-          }
-        });
+        final.push(temp[o]);
       }
     }
+    final.forEach(element => {
+      if (element = 1) {
+        console.log("bin ", element)
+        navigator.vibrate([1700, timer]);
+      }
+    });
   }
 
   start = () => {
