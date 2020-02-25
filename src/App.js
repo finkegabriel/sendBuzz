@@ -16,8 +16,6 @@ class App extends React.Component {
     receive: 0,
     buffer: [],
     decodeBuffer: [],
-    testData: "00001000",
-    testDataOff: "00000000",
     binarayBuffer: [],
     wait: 6000,
     x: 0,
@@ -77,11 +75,15 @@ class App extends React.Component {
     let final = [];
     const timer = 2000;
     overFlow.push(binary);
-
+    console.log("bin ",binary);
     for (let i = 0; i < overFlow.length; i++) {
-      temp.push(overFlow[i].split(''));
+      temp.push(overFlow[i].split(''), timer);
+      for (let o = 0; o < temp.length; o++) {
+        if (temp === 1) {
+          navigator.vibrate(1700);
+        }
+      }
     }
-    console.log("pp ",temp);
     // for (let i = 0; i < binary.length; i++) {
     //   overFlow.push(binary[i]);
     //   if (i % 2 === 0) {
@@ -90,7 +92,6 @@ class App extends React.Component {
     //     final.push(binary[i] * 10, timer);
     //   }
     // console.log(final);
-    // navigator.vibrate(final);
     // }
   }
 
@@ -145,6 +146,9 @@ class App extends React.Component {
               for (let i = 0; i < buffer.length; i++) {
                 // console.log("dec to bin ", this.dec2bin(buffer[i]));
                 let num = this.dec2bin(buffer[i]);
+                while (num.length < 8) {
+                  num = "0" + num;
+                }
                 this.encode(num);
               }
             }
