@@ -84,11 +84,13 @@ class App extends React.Component {
       }
     }
     final.forEach(element => {
-      console.log(element);
-      // if (element = 1) {
-      //   console.log("bin ", element)
-      //   navigator.vibrate([1700, timer]);
-      // }
+      // console.log(element);
+      for (let q = 0; q < element.length; q++) {
+        if (element[q] === 1) {
+          console.log("bin ", element)
+          navigator.vibrate([1700, timer]);
+        }
+      }
     });
   }
 
