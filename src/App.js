@@ -80,7 +80,7 @@ class App extends React.Component {
     for (let i = 0; i < overFlow.length; i++) {
       temp.push(overFlow[i].split(''));
       for (let o = 0; o < temp.length; o++) {
-        console.log("ll ", temp[o]);
+        console.log("ll ", temp[o].length);
         // if (temp[o] === '1') {
         //   console.log("bin ", temp[o])
         //   navigator.vibrate(1700);
